@@ -59,23 +59,34 @@ it('Url are defined',function(){
 
 
     
-        /* TODO: Write a test that ensures the menu element is
+        /*  test that ensures the menu element is
          * hidden by default. You'll have to analyze the HTML and
          * the CSS to determine how we're performing the
          * hiding/showing of the menu element.
          */
 it('menu element is hidden',function(){
 
-    
+ expect($('body').hasClass('menu-hidden')).toEqual(true);
 });
-         /* TODO: Write a test that ensures the menu changes
+
+         /* test that ensures the menu changes
           * visibility when the menu icon is clicked. This test
           * should have two expectations: does the menu display when
           * clicked and does it hide when clicked again.
           */
+         it('Menu icon is clickable',function () {
+             $('.menu-icon-link').trigger('click');
+             expect($('body').hasClass('menu-hidden')).toBe(false);
+             $('.menu-icon-link').trigger('click');
+             expect($('body').hasClass('menu-hidden')).toBe(true);
+             
+           })
         });
-    /* TODO: Write a new test suite named "Initial Entries" */
 
+    /* new test suite named "Initial Entries" */
+describe('Initial Entries',function(){
+
+});
         /* TODO: Write a test that ensures when the loadFeed
          * function is called and completes its work, there is at least
          * a single .entry element within the .feed container.
