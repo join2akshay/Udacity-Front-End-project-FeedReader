@@ -86,18 +86,49 @@ it('menu element is hidden',function(){
     /* new test suite named "Initial Entries" */
 describe('Initial Entries',function(){
 
-});
-        /* TODO: Write a test that ensures when the loadFeed
+
+        /* a test that ensures when the loadFeed
          * function is called and completes its work, there is at least
          * a single .entry element within the .feed container.
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
-
-    /* TODO: Write a new test suite named "New Feed Selection" */
-
-        /* TODO: Write a test that ensures when a new feed is loaded
+        beforeEach(function(done){
+            loadFeed(0,function(){done();
+            });
+        });
+        it('check at least one entry element is there',function(){
+            expect($('.feed .entry').length).not.toBe(0);
+        });
+    });
+    
+    /* new test suite named "New Feed Selection" */
+    describe('New Feed Selection',function(){
+        var first,second;
+    
+    
+        /*  test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+beforeEach(function(done){
+  
+    loadFeed(1,function(){
+        firstFeed = $('.feed').html();
+        loadFeed(2,function(){
+            done();
+        });
+    });
+
+});
+afterEach(function() {
+    loadFeed(0);
+});
+it('function actullay changed',function(){
+    secondFeed = $('.feed').html();
+    expect(firstFeed).not.toEqual(secondFeed);
+})
+
+    });
+    
 });
